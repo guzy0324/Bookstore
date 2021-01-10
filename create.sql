@@ -1,5 +1,5 @@
-drop database bookstore
 create database bookstore
+go
 use bookstore
 
 CREATE TABLE BSUSER
@@ -73,7 +73,6 @@ CREATE TABLE TRANSACT
     FOREIGN KEY(BuyerUN) references BSUSER(Username),
     FOREIGN KEY(SellerUN,BookID) references LISTING (Seller, Book)
 );
-
 go
 create trigger t_user_reivew on USER_REVIEW for insert as
 if (select count(*)
@@ -82,12 +81,11 @@ if (select count(*)
 BEGIN
 rollback TRANSACTION
 end
-
 go
 create trigger t_book_reivew on BOOK_REVIEW for insert as
 if (select count(*)
     from TRANSACT t, inserted i
-    where t.BuyerUN=i.Reviewer and t.Book=i.Book)=0
+    where t.BuyerUN=i.Reviewer and t.BookID=i.Book)=0
 begin
 rollback TRANSACTION
 end
