@@ -87,7 +87,7 @@ go
 create trigger t_book_reivew on BOOK_REVIEW for insert as
 if (select count(*)
     from TRANSACT t, inserted i
-    where t.BuyerUN=i.Reviewer and t.SellerUN=i.Book)=0
+    where t.BuyerUN=i.Reviewer and t.Book=i.Book)=0
 begin
 rollback TRANSACTION
 end
