@@ -1,26 +1,31 @@
 # SQLite_Bookstore
-An example SQLite implementation of an Online Bookstore
-
-## Setup
-
-#### SQLite
-Make sure you have [SQLite](https://www.sqlite.org/download.html) installed.
-
-#### Webpage
-If you want to use the webpage elements, make sure you have a version of Python 2.X (2.6 or higher).
-Then install [Flask](http://flask.pocoo.org/docs/0.10/installation/#installation).
-
-## Usage
-
-#### SQLite
-Run ```sqlite3``` to open up the SQLite shell.
-
-Run ```.read create.sql``` to create the tables and then ```.read populate.sql``` to insert the dummy data.
-
-You can now run whatever queries you'd like on the data to test it out.
-
-#### Webpage
-Run ```python server.py``` and navigate to the provided link. (Probably [127.0.0.1:5000](http://127.0.0.1:5000/))
-
-[127.0.0.1:5000/books/](http://127.0.0.1:5000/books/) will display the book list, while [127.0.0.1:5000/skyler/history](http://127.0.0.1:5000/skyler/history) will display the transaction history for the USER with the username 'skyler'.
-This can be done for any user in the system.
+```mermaid
+graph TD
+user[BSUSER]
+auth[AUTHOR]
+book[BOOK]
+ur[USER_REVIEW]
+br[BOOK_REVIEW]
+tran[TRANSACT]
+buy{tran_buyer}
+sell{tran_seller}
+tb{tran_book}
+write{write}
+u_r{user_ureview}
+b_r{book_breview}
+list{listing}
+buy-->tran
+buy-->user
+sell-->tran
+sell-->user
+tb-->tran
+tb-->book
+write-->auth
+write-->book
+u_r-->ur
+u_r-->user
+b_r-->br
+b_r-->book
+list-->user
+list---book
+```
