@@ -2,13 +2,6 @@ create database bookstore
 go
 
 use bookstore
-create table DBUSER
-(
-    Username VARCHAR(30) not null,
-    Password VARCHAR(30) not null,
-    primary key(Username)
-)
-
 CREATE TABLE BSUSER
 (
     Username VARCHAR(15) NOT NULL,
@@ -37,22 +30,23 @@ CREATE TABLE BOOK
 
 CREATE TABLE REVIEW
 (
+    Title VARCHAR(15),
     Reviewer VARCHAR(15) NOT NULL,
     BookID CHAR(14) NOT NULL,
     Rating INT NOT NULL,
     Review TEXT,
     CHECK (Rating >= 1 OR Rating <= 5),
-    PRIMARY KEY(Reviewer, BookID),
+    PRIMARY KEY(Title),
     FOREIGN KEY(Reviewer) references BSUSER(Username),
     FOREIGN KEY(BookID) references BOOK(ISBN)
 );
 
 CREATE TABLE TRANSACT
 (
+    DateTime CHAR(23) NOT NULL,
     Buyer VARCHAR(15) NOT NULL,
     BookID CHAR(14) NOT NULL,
-    DateTime CHAR(23) NOT NULL,
-    PRIMARY KEY(Buyer, BookID, DateTime),
+    PRIMARY KEY(DateTime),
     FOREIGN KEY(Buyer) references BSUSER(Username),
     FOREIGN KEY(BookID) references BOOK(ISBN)
 );
@@ -60,10 +54,17 @@ CREATE TABLE TRANSACT
 create table BOOKMARK
 (
     Title VARCHAR(15),
+    Descript TEXT,
+    primary key(Title)
+)
+
+create table BOOKMARK_BOOK
+(
+    Title VARCHAR(15),
     Owner VARCHAR(15),
     BookID CHAR(14),
     Owned Bit,
-    primary key(Title, Owner, BookID),
+    primary key(Title, BookID, Owned),
     foreign key(Owner) references BSUSER(Username),
     foreign key(BookID) references BOOK(ISBN)
 )
@@ -84,5 +85,5 @@ begin
 rollback transaction
 end
 update book set quantity=quantity-1 where ISBN=(select BookID from inserted)
-update bookmark set Owned=1 where BookID = (select BookID from inserted)
+update bookmark_book set Owned=1 where BookID=(select BookID from inserted)
 and Owner=(select Buyer from inserted)
