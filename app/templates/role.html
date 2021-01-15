@@ -1,0 +1,50 @@
+<!-- role panel -->
+<!-- choose mode: developer or user -->
+
+{% extends 'base.html' %}
+{% block content %}
+<html>
+	<style type="text/css">
+		.bodystyle{
+		filter:alpha(opacity=50);   
+		opacity: 0.35;
+		height:100%;
+		width:100%;
+		text-align:"center";
+		position:absolute;
+		background:url("../static/library.jpg"); 
+		background-size: 100% 100%;
+		z-index:-1;
+		}
+	</style>
+	<body>
+<div class="bodystyle"></div>
+<div style="width:1300px; text-align:center;">
+
+<h1>欢迎！</h1>
+<br>
+
+<b>在<font color="red">用户</font>模式下, 可以浏览数据库内容、添加评论以及购买书籍.</b>
+<br><br>
+<b>在<font color="red">开发者</font>模式下, 开发者拥有操作数据库的一切权限.</b>
+<br><br>
+
+
+
+<h1>您是用户还是开发者?</h1>
+<form action='/user' method=post enctype=multipart/form-data>
+	<input type=submit value=用户 style='height:40px; width:240px; display:inline-block; text-align:center;'>
+</form>
+<br>
+
+<form action='/developer' method=post enctype=multipart/form-data>
+	<input type=submit value=开发者 style='height:40px; width:240px; display:inline-block; text-align:center;'>
+</form>
+<br>
+
+
+
+</div>
+</body>
+</html>
+{% endblock %}

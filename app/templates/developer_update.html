@@ -1,0 +1,83 @@
+<!-- Insert option panel -->
+
+{% extends 'base.html' %}
+{% block content %}
+<html>
+	<style type="text/css">
+		.bodystyle{
+		filter:alpha(opacity=50);   
+		opacity: 0.35;
+		height:100%;
+		width:100%;
+		text-align:"center";
+		position:absolute;
+		background:url("../static/library.jpg"); 
+		background-size: 100% 100%;
+		z-index:-1;
+		}
+	</style>
+	<body>
+<div class="bodystyle"></div>
+<h2>对表{{table}}进行更新：</h2>
+<center>
+<hr align='left' width=100% size='5' >
+
+<b>更新语句可以对表内某个值进行更新：</b>
+<br><br>
+<b>SQL语句如下: UPDATE table SET attribute=newvalue where attribute=oldvalue</b>
+<br><br>
+这里查看所有列
+<select>
+	{% for i in range(attributeLen) %}
+		<option value=i>{{attributeList[i]}}</option>
+	{% endfor %}
+</select>
+<br><br>
+
+<!-- show table information -->
+<style type="text/css">
+	th, td
+	{
+		text-align: center;
+	}
+</style>
+
+<table border='1'>
+<tr>
+    {% for attributeName in attributeList %}
+    	<th>{{attributeName}}</th>
+    {% endfor %}
+</tr>
+{% for i in range(row) %}
+	<tr>
+		{% for j in range(col) %}
+			{% if (i % 2) == 0 %}
+				<td bgcolor='#E9E9FF'>{{results[i][j]}}</td>
+			{% else %}
+				<td>{{results[i][j]}}</td>
+			{% endif %}
+		{% endfor %}
+	</tr>
+{% endfor %}
+</table>
+
+<br><br>
+
+<form action='/developer/update/result' method=post>
+	<b>请输入正确的SQL语句： </b><br><br>
+	<!-- here need to input all attribute value -->
+	{% for i in range(attributeLen) %}
+		&emsp; {{attributeList[i]}}
+	{% endfor %}
+	<br><br>
+	<b>SQL: UPDATE table SET </b> <input type=text name=updateSQL> <b>WHERE </b> <input type=text name=pending>
+	<input type=submit value=query>
+</form>
+
+<hr align='left' width=100% size='5' >
+
+<br><br><br>
+</center>
+</body>
+</html>
+{% endblock %}

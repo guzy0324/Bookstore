@@ -1,0 +1,43 @@
+<!-- welcome panel -->
+<!-- show welcome information -->
+
+{% extends 'base.html' %}
+{% block content %}
+<html>
+	<style type="text/css">
+		.bodystyle{
+		filter:alpha(opacity=50);   
+		opacity: 0.35;
+		height:100%;
+		width:100%;
+		text-align:"center";
+		position:absolute;
+		background:url("../static/library.jpg"); 
+		background-size: 100% 100%;
+		z-index:-1;
+		}
+	</style>
+	<body>
+<div class="bodystyle"></div>
+<div style="width:100%;text-align:center">
+<center>
+<h1>欢迎!</h1>
+
+
+
+<fieldset style=width:300px>
+<h2>登录</h2>
+<a href='/login'>
+	<input type=submit value='登录' style='height:30px; width:240px; display:inline-block; text-align:center;'>
+</a>
+
+<h2>注册</h2>
+<a href='/register'>
+	<input type=submit value='添加新的账户' style='height:30px; width:240px; display:inline-block; text-align:center;'>
+</a>
+</fieldset>
+</center>
+</div>
+</body>
+</html>
+{% endblock %}

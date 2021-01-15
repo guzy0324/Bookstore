@@ -1,0 +1,30 @@
+<!-- base template -->
+
+<html>
+		<style type="text/css">
+			.base{
+			filter:alpha(opacity=50);   
+			opacity: 0.35;
+			height:100%;
+			width:100%;
+			text-align:"center";
+			position:absolute;
+			background:url("../static/library.jpg"); 
+			background-size: 100% 100%;
+			z-index:-1;
+			}
+		</style>
+<body>
+		<div class="base"></div>
+		<div style="width:100%">
+			Jump to panel: &emsp; 
+			<a href='#' onClick='javascript :history.back(1);'>Back</a> &emsp;
+			<a href='javascript:location.reload();'>Refresh</a> &emsp; 
+			<a href='/'>Home</a> &emsp;
+			<a href='/login'>Login</a>
+		</div>
+		<hr>
+		
+		{% block content %}{% endblock %}
+	</body>
+</html>

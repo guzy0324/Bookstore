@@ -1,0 +1,42 @@
+<!-- login panel -->
+<!-- show welcome information -->
+
+{% extends 'base.html' %}
+{% block content %}
+<html>
+	<style type="text/css">
+		.bodystyle{
+		filter:alpha(opacity=50);   
+		opacity: 0.35;
+		height:100%;
+		width:100%;
+		text-align:"center";
+		position:absolute;
+		background:url("../static/library.jpg"); 
+		background-size: 100% 100%;
+		z-index:-1;
+		}
+	</style>
+	<body>
+
+<div class="bodystyle"></div>
+	<center>
+<h1>登录界面</h1>
+
+<br>
+
+<div class="search">
+<form action='/role' method=post enctype=multipart/form-data >
+	<fieldset style="width:300px;text-align: center;" >
+	用户名 <input type=text name=username ><br><br> 
+	密码 <input type=password name=password ><br><br>
+	<input type=submit value=登录 style='height:30px; width:240px; display:inline-block; text-align:center;'>
+</fieldset>
+</form>
+<br>
+</center>
+</div>
+
+</body>
+</html>
+{% endblock %}

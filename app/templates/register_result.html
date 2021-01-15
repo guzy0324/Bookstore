@@ -1,0 +1,33 @@
+<!-- Register result panel -->
+
+{% extends 'base.html' %}
+{% block content %}
+<html>
+	<style type="text/css">
+		.bodystyle{
+		filter:alpha(opacity=50);   
+		opacity: 0.35;
+		height:100%;
+		width:100%;
+		text-align:"center";
+		position:absolute;
+		background:url("../static/library.jpg"); 
+		background-size: 100% 100%;
+		z-index:-1;
+		}
+	</style>
+	<body>
+<div class="bodystyle"></div>
+<div class="search">
+<center>
+<h2>用户名:  {{username}}</h2>
+<h2>密码:  {{password}}</h2>
+<h2>注册结果： {{result}}</h2>
+
+
+<br><br><br>
+</center>
+</div>
+</body>
+</html>
+{% endblock %}

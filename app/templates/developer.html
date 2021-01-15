@@ -1,0 +1,145 @@
+<!-- developer panel -->
+<!-- database's operation -->
+
+{% extends 'base.html' %}
+{% block content %}
+<html>
+	<style type="text/css">
+		.bodystyle{
+		filter:alpha(opacity=50);   
+		opacity: 0.35;
+		height:1300;
+		width:100%;
+		text-align:"center";
+		position:absolute;
+		background:url("../static/library.jpg"); 
+		background-size: 100% 100%;
+		z-index:-1;
+		}
+	</style>
+
+	<body>
+		
+<div class="bodystyle"></div>
+<center>
+<h1>欢迎！{{user}} (开发者)</h1>
+
+<hr align='left' width=100% size='5' >
+
+<h2>数据库中的表和列如下：</h2>
+{% for i in range(tableLen) %}
+	<h4 style='display: inline;'>{{tableList[i]}}</h4>
+	{% for attibute in attributeList[i] %}
+		&emsp; ({{attibute}})
+	{% endfor %}
+	<br>
+{% endfor %}
+
+<hr align='left' width=100% size='5' >
+
+<br>
+<h2>您可以按照如下指令去操作本数据库:</h2>
+
+
+<!-- select -->
+<hr align='left' width=100% size='2' >
+<b>SELECT语句可从某个表内选择某个列</b>
+<br><br>
+<b>SQL语句如下: SELECT attribute FROM table</b>
+<br><br>
+这里查看所有表:
+<select>
+	{% for i in range(tableLen) %}
+		<option value=i>{{tableList[i]}}</option>
+	{% endfor %}
+</select>
+<br><br>
+<form action='/developer/select' method=post>
+	<b>请选择一个表执行select操作: </b>
+	<input type=text name=table>
+	<input type=submit value=submit>
+</form>
+
+<!-- insert -->
+<hr align='left' width='800' size='2' >
+<b>INSERT语句可向某个表内插入元组</b>
+<br><br>
+<b>SQL: INSERT INTO table VALUES value tuple</b>
+<br><br>
+这里查看所有表:
+<select>
+	{% for i in range(tableLen) %}
+		<option value=i>{{tableList[i]}}</option>
+	{% endfor %}
+</select>
+<br><br>
+<form action='/developer/insert' method=post>
+	<b>请输入要执行插入操作的表: </b>
+	<input type=text name=table>
+	<input type=submit value=submit>
+</form>
+
+<!-- updte -->
+<hr align='left' width=100% size='2'>
+<b>UPDATE语句可对任意数据库表进行更新</b>
+<br><br>
+<b>SQL语句如下: UPDATE table SET values WHERE statement</b>
+<br><br>
+这里查看所有表：
+<select>
+	{% for i in range(tableLen) %}
+		<option value=i>{{tableList[i]}}</option>
+	{% endfor %}
+</select>
+<br><br>
+<form action='/developer/update' method=post>
+	<b>请输入需要更新的表: </b>
+	<input type=text name=table>
+	<input type=submit value=submit>
+</form>
+
+<!-- delete -->
+<hr align='left' width=100% size='2' >
+<b>DELETE语句可删除某个表满足某个条件的记录</b>
+<br><br>
+<b>SQL语句如下: DELETE FROM table WHERE statement</b>
+<br><br>
+这里查看所有表：
+<select>
+	{% for i in range(tableLen) %}
+		<option value=i>{{tableList[i]}}</option>
+	{% endfor %}
+</select>
+<br><br>
+<form action='/developer/delete' method=post>
+	<b>请输入要执行删除操作的表: </b>
+	<input type=text name=table>
+	<input type=submit value=submit>
+</form>
+
+<!-- drop -->
+<hr align='left' width=100% size='2' >
+<b>DROP语句可删除表、索引、数据库、视图</b>
+<br><br>
+<b>SQL语句如下: DROP TABLE table</b>
+<br><br>
+这里查看所有表
+<select>
+	{% for i in range(tableLen) %}
+		<option value=i>{{tableList[i]}}</option>
+	{% endfor %}
+</select>
+<br><br>
+<form action='/developer/drop' method=post>
+	<b>请输入要删除的表: </b>
+	<input type=text name=table>
+	<input type=submit value=submit>
+</form>
+
+<hr align='left' width=100% size='2' >
+<br><br><br><br><br>
+</center>
+</div>
+</body>
+</html>
+{% endblock %}

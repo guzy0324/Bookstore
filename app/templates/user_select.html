@@ -1,0 +1,50 @@
+<!-- Select option panel -->
+
+{% extends 'base.html' %}
+{% block content %}
+<html>
+	<style type="text/css">
+		.bodystyle{
+		filter:alpha(opacity=50);   
+		opacity: 0.35;
+		height:100%;
+		width:100%;
+		text-align:"center";
+		position:absolute;
+		background:url("../static/library.jpg"); 
+		background-size: 100% 100%;
+		z-index:-1;
+		}
+	</style>
+	<body>
+
+<div class="bodystyle"></div>
+<center>
+	<h2>在{{table}}表内查询</h2>
+<hr align='left' width=100%  size='5' >
+
+<b>SELECT语句可从某个表内选择某个列</b>
+<br><br>
+<b>SQL语句如下: SELECT attribute FROM table</b>
+<br><br>
+这里查看所有列
+<select>
+	{% for i in [0,1,2,3,6] %}
+		<option value=i>{{attributeList[i]}}</option>
+	{% endfor %}
+</select>
+<br><br>
+<form action='/user/select/result' method=post>
+	<b>请输入要查询的列： </b>
+	<input type=text name=attribute>
+	<input type=submit value=query>
+</form>
+
+<hr align='left' width=100% size='5' >
+
+<br><br><br>
+</center>
+</body>
+</html>
+
+{% endblock %}
