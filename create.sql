@@ -2,18 +2,12 @@ create database bookstore
 go
 
 use bookstore
-CREATE TABLE DBUSER
-(
-    Username VARHCAR(30),
-    Password VARCHAR(30),
-    PRIMARY KEY(Username)
-);
-
 CREATE TABLE BSUSER
 (
     Username VARCHAR(15) NOT NULL,
     Password VARCHAR(15) NOT NULL,
     Address VARCHAR(20) NOT NULL,
+    IfManager INT,
     PRIMARY KEY(Username)
 );
 
